@@ -18,8 +18,15 @@ export class Database {
     fs.writeFile(dataBasePath, JSON.stringify(this.#database));
   }
 
-  select(table) {
-    let data = this.#database[table] ?? []
+  select(table, id) {
+    let data = this.#database[table] ?? [];
+
+    const rowIndex = this.#database[table].findIndex(row => row.id == id);
+
+    if (rowIndex > -1) {
+      const getTask = this.#database[table][rowIndex]
+      return getTask
+    }
     
     return data
   }

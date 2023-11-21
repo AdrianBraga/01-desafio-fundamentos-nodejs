@@ -8,11 +8,22 @@ const database = new Database();
 export const routes = [
   {
     method: 'GET',
+    path: buildRoutePath('/tasks/:id'),
+    handler: (req, res) => {
+      const { id } = req.params;
+      
+      const tasks = database.select('tasks', id);
+      
+      return res.end(JSON.stringify(tasks))
+    },
+  },
+  {
+    method: 'GET',
     path: buildRoutePath('/tasks'),
     handler: (req, res) => {
       const tasks = database.select('tasks');
 
-      return res.end(JSON.stringify(tasks));
+      return res.end(JSON.stringify(tasks))
     },
   },
   {
