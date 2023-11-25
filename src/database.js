@@ -55,7 +55,7 @@ export class Database {
     return data
   }
 
-  delete(table, id, data) {
+  delete(table, id) {
     const rowIndex = this.#database[table].findIndex(row => row.id == id);
 
     if (rowIndex > -1) {
